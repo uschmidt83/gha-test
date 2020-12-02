@@ -23,6 +23,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install --upgrade pip wheel setuptools
       - run: pip install pytest
-      - run: echo '${{ matrix.TENSORFLOW }}'
+      - run: echo ${{ matrix.TENSORFLOW }}
       - run: pip install .
       - run: pytest -v
