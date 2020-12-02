@@ -9,7 +9,10 @@ jobs:
     strategy:
       matrix:
         python-version: [3.6, 3.7]
-        TENSORFLOW: ['tensorflow<2', 'tensorflow']
+        TENSORFLOW: ['tensorflow<2']
+        include:
+          - python-version: 3.7
+            TENSORFLOW: ['tensorflow']
 
     steps:
       - uses: actions/checkout@v2
@@ -17,7 +20,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install --upgrade pip wheel setuptools
-      - run: echo ${{ matrix.TENSORFLOW }}
+      - run: echo "${{ matrix.TENSORFLOW }}"
       - run: pip install pytest
       - run: pip install .
       - run: pytest -v
